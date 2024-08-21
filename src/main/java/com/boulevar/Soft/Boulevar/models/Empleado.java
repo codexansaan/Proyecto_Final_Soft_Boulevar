@@ -2,9 +2,12 @@ package com.boulevar.Soft.Boulevar.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
-import java.math.BigDecimal;
-import java.sql.Date;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 
 @Entity
@@ -13,96 +16,89 @@ public class Empleado {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-
+    @Getter
+    @Setter
     @Column(nullable = false)
-    private int id;
+    private int idEmpleado;
 
-    @Column(nullable = true)
-    @Max(30)
+    @Column(length = 30)
+    @Getter
+    @Setter
     private String nombres;
 
-    @Column(nullable = true)
-    @Max(45)
+    @Column(length = 45)
+    @Getter
+    @Setter
     private String apellidos;
 
     @Column(nullable = false)
     @Max(10)
-    private Integer celular;
+    private String celular;
 
     @Column(nullable = false)
     @Max(10)
-    private Integer cedula_Identidad;
+    private String cedula_Identidad;
 
-    @Column(nullable = true)
-    private BigDecimal sueldo;
+    @Column
+    @Getter
+    @Setter
+    private Integer sueldo;
+
 
     @Column(nullable = false)
+    @Getter
+    @Setter
+    @Email
     private String correo;
 
     @Column(nullable = false)
-    private Date fecha_Nacimiento;
+    @Getter
+    @Setter
+    private LocalDate fecha_Nacimiento;
 
-    public int getId() {
-        return id;
+
+    public Empleado() {
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public @Max(30) String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(@Max(30) String nombres) {
+    public Empleado(String nombres, String apellidos, String celular, String cedula_Identidad, Integer sueldo, String correo, LocalDate fecha_Nacimiento) {
         this.nombres = nombres;
-    }
-
-    public @Max(45) String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(@Max(45) String apellidos) {
         this.apellidos = apellidos;
+        this.celular = celular;
+        this.cedula_Identidad = cedula_Identidad;
+        this.sueldo = sueldo;
+        this.correo = correo;
+        this.fecha_Nacimiento = fecha_Nacimiento;
     }
 
-    public @Max(10) Integer getCelular() {
+
+    public @Max(10) String getCelular() {
         return celular;
     }
 
-    public void setCelular(@Max(10) Integer celular) {
+    public void setCelular(@Max(10) String celular) {
         this.celular = celular;
     }
 
-    public @Max(10) Integer getCedula_Identidad() {
+    public @Max(10) String getCedula_Identidad() {
         return cedula_Identidad;
     }
 
-    public void setCedula_Identidad(@Max(10) Integer cedula_Identidad) {
+    public void setCedula_Identidad(@Max(10) String cedula_Identidad) {
         this.cedula_Identidad = cedula_Identidad;
     }
 
-    public BigDecimal getSueldo() {
-        return sueldo;
-    }
 
-    public void setSueldo(BigDecimal sueldo) {
-        this.sueldo = sueldo;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public Date getFecha_Nacimiento() {
-        return fecha_Nacimiento;
-    }
-
-    public void setFecha_Nacimiento(Date fecha_Nacimiento) {
-        this.fecha_Nacimiento = fecha_Nacimiento;
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + idEmpleado +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", celular=" + celular +
+                ", cedula_Identidad=" + cedula_Identidad +
+                ", sueldo=" + sueldo +
+                ", correo='" + correo + '\'' +
+                ", fecha_Nacimiento=" + fecha_Nacimiento +
+                '}';
     }
 }
