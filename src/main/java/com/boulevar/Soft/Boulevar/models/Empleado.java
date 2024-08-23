@@ -16,45 +16,46 @@ public class Empleado {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Getter
-    @Setter
+    @Getter @Setter
     @Column(nullable = false)
     private int idEmpleado;
 
     @Column(length = 30)
-    @Getter
-    @Setter
+    @Getter @Setter
     private String nombres;
 
     @Column(length = 45)
-    @Getter
-    @Setter
+    @Getter @Setter
     private String apellidos;
 
     @Column(nullable = false)
+    @Setter @Getter
     @Max(10)
     private String celular;
 
     @Column(nullable = false)
+    @Setter @Getter
     @Max(10)
     private String cedula_Identidad;
 
     @Column
-    @Getter
-    @Setter
+    @Getter @Setter
     private Integer sueldo;
 
-
     @Column(nullable = false)
-    @Getter
-    @Setter
+    @Getter @Setter
     @Email
     private String correo;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
+    @Getter @Setter
     private LocalDate fecha_Nacimiento;
+
+    // Relación con Usuario usando la clave primaria codigoUsuario
+    @OneToOne
+    @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigoUsuario")
+    @Getter @Setter
+    private Usuario usuario;
 
 
     public Empleado() {
@@ -69,24 +70,6 @@ public class Empleado {
         this.correo = correo;
         this.fecha_Nacimiento = fecha_Nacimiento;
     }
-
-
-    public @Max(10) String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(@Max(10) String celular) {
-        this.celular = celular;
-    }
-
-    public @Max(10) String getCedula_Identidad() {
-        return cedula_Identidad;
-    }
-
-    public void setCedula_Identidad(@Max(10) String cedula_Identidad) {
-        this.cedula_Identidad = cedula_Identidad;
-    }
-
 
     @Override
     public String toString() {

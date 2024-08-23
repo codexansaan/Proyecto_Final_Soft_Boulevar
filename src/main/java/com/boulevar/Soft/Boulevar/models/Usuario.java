@@ -15,18 +15,39 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Setter
-    @Getter
+    @Setter @Getter
     @Column(nullable = false)
     private int codigoUsuario;
 
     @Column(nullable = false)
-    @Setter
-    @Getter
+    @Setter @Getter
     private String password;
 
     @Column(nullable = false)
+    @Setter @Getter
     private String turno;
+
+    //Relacion inversa con Empleado
+    @OneToOne(mappedBy = "usuario")
+    @Getter @Setter
+    private Empleado empleado;
+
+    // Relaciones uno a uno con otras entidades
+    @OneToOne(mappedBy = "usuario")
+    @Getter @Setter
+    private Mesero mesero;
+
+    @OneToOne(mappedBy = "usuario")
+    @Getter @Setter
+    private Cocinero cocinero;
+
+    @OneToOne(mappedBy = "usuario")
+    @Getter @Setter
+    private Cajero cajero;
+
+    @OneToOne(mappedBy = "usuario")
+    @Getter @Setter
+    private Administrador administrador;
 
     @ManyToMany
     @JoinTable(
@@ -34,8 +55,7 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "codigoUsuario"),
             inverseJoinColumns = @JoinColumn(name = "codigoRol")
     )
-    @Getter
-    @Setter
+    @Getter @Setter
     private Set<Rol> roles;
 
     public Usuario() {
