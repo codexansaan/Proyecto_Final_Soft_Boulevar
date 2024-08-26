@@ -7,20 +7,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cajero")
-public class Cajero {
-
+@Table(name = "menu")
+public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int menuId;
 
-    @OneToOne
-    @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigoUsuario")
-    private Usuario usuario;
+    @Column(nullable = false)
+    private String nombre;
+
+    @OneToMany
+    @JoinColumn(name = "menuId")
+    private Set<Producto> productos;
 
 }

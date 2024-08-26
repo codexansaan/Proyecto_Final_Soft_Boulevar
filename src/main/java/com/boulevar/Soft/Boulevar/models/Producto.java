@@ -6,27 +6,30 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.Set;
-
-
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "roles")
-public class Rol {
+@Table(name = "productos")
+public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private int codigoRol;
+    private int id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String nombre;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<Usuario> usuarios;
+    @Column(nullable = false)
+    private Double precio;
 
+    @Column(nullable = true)
+    private String ingredientes;
 
+    @OneToMany
+    @JoinColumn(name = "menuId")
+    private Set<Producto> productos;
 }
