@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Empleados</title>
+</head>
+<body>
+<div class="contenedor">
+    <div>
+        <a href="/save/0" class="btn">Agregar</a>
+    </div>
+    <div>
+        <h2 th:if="${list.isEmpty()}">No hay empleados</h2>
+
+        <div th:if="${!list.isEmpty()}">
+            <h2>Empleados</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Número ID</th>
+                    <th>Celular</th>
+                    <th>Correo</th>
+                    <th>Salario</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="empleado : ${list}">
+                    <td th:text="${empleado.nombres}"></td>
+                    <td th:text="${empleado.apellidos}"></td>
+                    <td th:text="${empleado.cedulaIdentidad}"></td>
+                    <td th:text="${empleado.celular}"></td>
+                    <td th:text="${empleado.correo}"></td>
+                    <td th:text="${empleado.sueldo}"></td>
+                    <td th:text="${empleado.fechaNacimiento}"></td>
+                    <td>
+                        <a th:href="@{/save/{id}(id=${empleado.idEmpleado})}">Editar</a>
+                        <a th:href="@{/delete/{id}(id=${empleado.idEmpleado})}">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

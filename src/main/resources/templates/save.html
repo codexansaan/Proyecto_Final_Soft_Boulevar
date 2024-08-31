@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Empleados</title>
+</head>
+<body>
+
+    <div class="contenedor">
+        <form action="#" th:action="@{/save}" th:object="${empleado}" method="post">
+            <div class="formulario">
+                <label for="nombres">Nombres</label>
+                <input type="text" class="inputs" id="nombres" th:field="*{nombres}" name="nombres">
+            </div>
+            <input type="hidden" th:field="*{idEmpleado}" name="idEmpleado" id="idEmpleado">
+            <div class="formulario">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" class="inputs" id="apellidos" th:field="*{apellidos}" name="apellidos">
+            </div>
+            <div class="formulario">
+                <label for="cedulaIdentidad">Numero de identificación</label>
+                <input type="text" class="inputs" id="cedulaIdentidad" th:field="*{cedulaIdentidad}" name="cedulaIdentidad">
+            </div>
+            <div class="formulario">
+                <label for="celular">Celular</label>
+                <input type="text" class="inputs" id="celular" th:field="*{celular}" name="celular">
+            </div>
+            <div class="formulario">
+                <label for="sueldo">Sueldo</label>
+                <input type="text" class="inputs" id="sueldo" th:field="*{sueldo}" name="sueldo">
+            </div>
+            <div class="formulario">
+                <label for="correo">Correo electrónico</label>
+                <input type="text" class="inputs" id="correo" th:field="*{correo}" name="correo">
+            </div>
+            <div class="formulario">
+                <label for="fechaNacimiento">Fecha de nacimiento</label>
+                <input type="text" class="inputs" id="fechaNacimiento" th:field="*{fechaNacimiento}" name="fechaNacimiento">
+            </div>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+</body>
+</html>

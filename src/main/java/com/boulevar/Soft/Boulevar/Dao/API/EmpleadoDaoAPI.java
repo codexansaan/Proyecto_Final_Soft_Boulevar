@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface EmpleadoDaoAPI extends CrudRepository<Empleado, Integer> {
 
+
+
 }

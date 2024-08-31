@@ -15,8 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Table(name="empleado")
+@AllArgsConstructor @Table(name="empleado")
 public class Empleado {
 
     @Id
@@ -31,12 +30,10 @@ public class Empleado {
     private String apellidos;
 
     @Column(nullable = false)
-    @Max(10)
     private String celular;
 
     @Column(nullable = false)
-    @Max(10)
-    private String cedula_Identidad;
+    private String cedulaIdentidad;
 
     @Column
     private Integer sueldo;
@@ -46,7 +43,7 @@ public class Empleado {
     private String correo;
 
     @Column(nullable = false)
-    private LocalDate fecha_Nacimiento;
+    private LocalDate fechaNacimiento;
 
     // Relación con Usuario usando la clave primaria codigoUsuario
     @OneToOne

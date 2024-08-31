@@ -3,8 +3,9 @@ package com.boulevar.Soft.Boulevar.Controller;
 import com.boulevar.Soft.Boulevar.Service.API.EmpleadoServiceAPI;
 import com.boulevar.Soft.Boulevar.models.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -14,30 +15,29 @@ public class EmpleadoController {
     @Autowired
     private EmpleadoServiceAPI empleadoServiceAPI;
 
-    @RequestMapping ("empleados")
-    public String index(Model model) {
-        model.addAttribute("list", empleadoServiceAPI.getAll());
-        return "index";
+    @GetMapping("/")
+    public List<Empleado> getAllEmpleados() {
+        return empleadoServiceAPI.getAll();
     }
-    @GetMapping("/save{id}")
-    public String ShowSave(@PathVariable("Id") Integer id, Model model) {
-        if (id != null){
-            model.addAttribute("empleado", empleadoServiceAPI.get(id));
+
+    @GetMapping("/show/{id}")
+    public Empleado getEmpleadoById(@PathVariable("id") Integer id) {
+        if (id != null && id != 0) {
+            return empleadoServiceAPI.get(id);
+        } else {
+            return new Empleado();
         }
-        return "Save";
     }
 
     @PostMapping("/save")
-    public String save(Empleado empleado, Model model) {
-        empleadoServiceAPI.save(empleado);
-        return "redirect:/";
+    public Empleado saveEmpleado(@RequestBody Empleado empleado) {
+        return empleadoServiceAPI.save(empleado);
     }
 
-
-    public String delete(@PathVariable Integer id, Model model) {
+    @DeleteMapping("delete/{id}")
+    public String delete(@PathVariable Integer id) {
         empleadoServiceAPI.deleted(id);
-        return "redirect:/";
+        return "Empleado eliminado con éxito";
     }
-
 
 }
