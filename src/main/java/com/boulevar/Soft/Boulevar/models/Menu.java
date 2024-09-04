@@ -18,13 +18,12 @@ public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int menuId;
+    private int idMenu;
 
     @Column(nullable = false)
     private String nombre;
 
-    @OneToMany
-    @JoinColumn(name = "menuId")
+    @OneToMany(mappedBy = "menu")
     private Set<Producto> productos;
 
 }

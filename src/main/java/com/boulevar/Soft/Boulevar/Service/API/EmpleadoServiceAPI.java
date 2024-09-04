@@ -6,5 +6,4 @@ import com.boulevar.Soft.Boulevar.models.Empleado;
 public interface EmpleadoServiceAPI extends GenericServiceAPI<Empleado, Integer> {
 
 
-
 }

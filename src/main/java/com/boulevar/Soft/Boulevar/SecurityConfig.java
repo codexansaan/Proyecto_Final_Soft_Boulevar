@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .cors(withDefaults())  // Configura CORS antes de las reglas de seguridad
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/empleados/**").permitAll() // Permite acceso sin autenticación a los endpoints
+                        .requestMatchers("/api/**").permitAll() // Permite acceso sin autenticación a los endpoints
                 )
                 .formLogin(withDefaults()) // Configuración para usar formulario de inicio de sesión por defecto
                 .httpBasic(withDefaults()); // Usa autenticación básica si no se ha configurado otro método
@@ -39,7 +39,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:8080");
+        config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         source.registerCorsConfiguration("/**", config);

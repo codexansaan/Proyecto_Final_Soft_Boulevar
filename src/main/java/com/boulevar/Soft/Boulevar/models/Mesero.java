@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Getter @Setter
 @NoArgsConstructor
@@ -17,10 +19,13 @@ public class Mesero {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idMesero;
 
     @OneToOne
     @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigoUsuario")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "mesero")  // El lado "muchos" tiene una referencia al lado "uno"
+    private Set<Orden> ordenes;
 
 }

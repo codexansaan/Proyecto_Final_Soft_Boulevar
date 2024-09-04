@@ -18,7 +18,7 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idProducto;
 
     @Column(nullable = false)
     private String nombre;
@@ -29,7 +29,12 @@ public class Producto {
     @Column(nullable = true)
     private String ingredientes;
 
-    @OneToMany
-    @JoinColumn(name = "menuId")
-    private Set<Producto> productos;
+    @ManyToOne
+    @JoinColumn(name = "idMenu")
+    private Menu menu;
+
+    @ManyToOne
+    @JoinColumn(name = "idOrden")  // Clave foránea en la tabla de Producto
+    private Orden orden;
+
 }
