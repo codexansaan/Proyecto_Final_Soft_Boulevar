@@ -45,6 +45,9 @@ public class Empleado {
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
 
+    @Column(nullable = false)
+    private  String imagen;
+
     // Relación con Usuario usando la clave primaria codigoUsuario
     @OneToOne
     @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigoUsuario")

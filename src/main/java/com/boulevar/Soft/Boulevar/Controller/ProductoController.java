@@ -2,6 +2,7 @@ package com.boulevar.Soft.Boulevar.Controller;
 
 
 import com.boulevar.Soft.Boulevar.Service.API.ProductoServiceAPI;
+import com.boulevar.Soft.Boulevar.Util.ApiRespuestaData;
 import com.boulevar.Soft.Boulevar.models.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,28 +18,30 @@ public class ProductoController {
     private ProductoServiceAPI productoServiceAPI;
 
     @GetMapping("/")
-    public List<Producto> getAllProductos() {
-        return productoServiceAPI.getAll();
+    public ApiRespuestaData<List<Producto>> getAllProductos() {
+        List<Producto> productos = productoServiceAPI.getAll();
+
+        return new ApiRespuestaData<>(productos);
     }
 
     @GetMapping("/show/{id}")
-    public Producto getProductoById(@PathVariable("id")Integer id) {
-        if (id != null && id != 0) {
-            return productoServiceAPI.get(id);
-        } else {
-            return new Producto();
-        }
+    public ApiRespuestaData<Producto> getProductoById(@PathVariable("id")Integer id) {
+        Producto producto = (id != null && id != 0) ? productoServiceAPI.get(id) : new Producto();
+          return new ApiRespuestaData<>(producto);
     }
 
     @PostMapping("/save")
-    public Producto saveProducto(@RequestBody Producto producto){
-        return productoServiceAPI.save(producto);
+    public ApiRespuestaData<Producto> saveProducto(@RequestBody Producto producto){
+        Producto savedEmpleado = productoServiceAPI.save(producto);
+
+        return new ApiRespuestaData<>(producto);
+
     }
 
     @DeleteMapping("delete/{id}")
-    public String delete(@PathVariable Integer id){
+    public ApiRespuestaData<String> delete(@PathVariable Integer id){
         productoServiceAPI.deleted(id);
-        return "Producto Eliminado con exito";
+        return new ApiRespuestaData<>("Producto Eliminado con exito");
     }
 
 }

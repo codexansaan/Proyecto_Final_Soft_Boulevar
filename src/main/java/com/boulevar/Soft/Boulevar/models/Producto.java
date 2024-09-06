@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -18,16 +17,25 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProducto;
+    private int id;
 
     @Column(nullable = false)
-    private String nombre;
+    private String name;
 
     @Column(nullable = false)
-    private Double precio;
+    private Double price;
 
     @Column(nullable = true)
-    private String ingredientes;
+    private String description;
+
+    @Column(nullable = false)
+    private  String image;
+
+    @Column(nullable = true)
+    private String category;
+
+    @Column(nullable = true)
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "idMenu")

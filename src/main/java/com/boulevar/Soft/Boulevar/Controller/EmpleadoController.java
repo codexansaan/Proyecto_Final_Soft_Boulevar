@@ -1,11 +1,14 @@
 package com.boulevar.Soft.Boulevar.Controller;
 
 import com.boulevar.Soft.Boulevar.Service.API.EmpleadoServiceAPI;
+import com.boulevar.Soft.Boulevar.Util.ApiRespuestaData;
 import com.boulevar.Soft.Boulevar.models.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
+
 
 
 @RestController
@@ -17,28 +20,29 @@ public class EmpleadoController {
     private EmpleadoServiceAPI empleadoServiceAPI;
 
     @GetMapping("/")
-    public List<Empleado> getAllEmpleados() {
-        return empleadoServiceAPI.getAll();
+    public ApiRespuestaData<List<Empleado>> getAllEmpleados() {
+        List<Empleado> empleados = empleadoServiceAPI.getAll();
+
+        return new ApiRespuestaData<>(empleados);
+
     }
 
     @GetMapping("/show/{id}")
-    public Empleado getEmpleadoById(@PathVariable("id") Integer id) {
-        if (id != null && id != 0) {
-            return empleadoServiceAPI.get(id);
-        } else {
-            return new Empleado();
-        }
+    public ApiRespuestaData<Empleado> getEmpleadoById(@PathVariable("id") Integer id) {
+        Empleado empleado = (id != null && id != 0) ? empleadoServiceAPI.get(id) : new Empleado();
+        return new ApiRespuestaData<>(empleado);
     }
 
     @PostMapping("/save")
-    public Empleado saveEmpleado(@RequestBody Empleado empleado) {
-        return empleadoServiceAPI.save(empleado);
+    public ApiRespuestaData<Empleado> saveEmpleado(@RequestBody Empleado empleado) {
+        Empleado savedEmpleado = empleadoServiceAPI.save(empleado);
+        return new ApiRespuestaData<>(savedEmpleado);
     }
 
     @DeleteMapping("delete/{id}")
-    public String delete(@PathVariable Integer id) {
+    public ApiRespuestaData<String> delete(@PathVariable Integer id) {
         empleadoServiceAPI.deleted(id);
-        return "Empleado eliminado con éxito";
+        return new ApiRespuestaData<>("Empleado eliminado con éxito");
     }
 
 }
