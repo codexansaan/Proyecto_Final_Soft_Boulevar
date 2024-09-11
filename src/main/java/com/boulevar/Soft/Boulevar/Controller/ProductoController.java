@@ -32,9 +32,9 @@ public class ProductoController {
 
     @PostMapping("/save")
     public ApiRespuestaData<Producto> saveProducto(@RequestBody Producto producto){
-        Producto savedEmpleado = productoServiceAPI.save(producto);
+        Producto savedProducto = productoServiceAPI.save(producto);
 
-        return new ApiRespuestaData<>(producto);
+        return new ApiRespuestaData<>(savedProducto);
 
     }
 
