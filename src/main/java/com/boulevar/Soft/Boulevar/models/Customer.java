@@ -1,7 +1,6 @@
 package com.boulevar.Soft.Boulevar.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,32 +12,31 @@ import java.util.Set;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cliente")
-public class Cliente {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigoCliente;
+    private int customerCode;
 
     @Column(nullable = false)
-    private int numeroIdentificacion;
+    private int identificationNumber;
 
     @Column(nullable = false)
-    private String nombres;
+    private String name;
 
     @Column(nullable = false)
-    private String apellidos;
+    private String lastName;
 
     @Column(nullable = false)
-    private int numeroContacto;
+    private int phone;
 
     @Column(nullable = false)
-    private String correo;
+    private String email;
 
     @Column(nullable = false)
-    private String direccion;
+    private String address;
 
-    @OneToMany(mappedBy = "cliente")  // El lado "muchos" tiene una referencia al lado "uno"
-    private Set<Orden> ordenes;
+    @OneToMany(targetEntity = Order.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "customer")
+    private Set<Order> orders;
 
 }

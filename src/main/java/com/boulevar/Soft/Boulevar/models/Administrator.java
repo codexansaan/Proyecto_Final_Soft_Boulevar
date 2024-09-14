@@ -11,17 +11,14 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "administrador")
-public class Administrador {
+public class Administrator {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int idAdministrator;
 
-    @OneToOne
-    @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigoUsuario")
-
-    private Usuario usuario;
+    @OneToOne(targetEntity = User.class, cascade = CascadeType.PERSIST)
+    private User user;
 
 }

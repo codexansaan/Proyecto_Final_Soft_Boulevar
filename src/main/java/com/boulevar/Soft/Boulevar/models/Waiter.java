@@ -14,16 +14,18 @@ import java.util.Set;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Menu {
+public class Waiter {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMenu;
+    private int idWaiter;
 
-    @Column(nullable = false)
-    private String name;
+    @OneToOne(targetEntity = User.class, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_code")
+    private User user;
 
-    @OneToMany(targetEntity = Product.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "menu")
-    private List<Product> products;
+    @OneToMany(targetEntity = Order.class, fetch = FetchType.LAZY, mappedBy = "waiter")  // El lado "muchos" tiene una referencia al lado "uno"
+    private List<Order> orders;
 
 }

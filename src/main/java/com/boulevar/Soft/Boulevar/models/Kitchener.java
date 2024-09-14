@@ -6,27 +6,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Set;
-
-
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "roles")
-public class Rol {
+public class Kitchener {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private int codigoRol;
+    private int idKitchener;
 
-    @Column(nullable = false, unique = true)
-    private String nombre;
-
-    @ManyToMany(mappedBy = "roles")
-    private Set<Usuario> usuarios;
-
-
+    @OneToOne(targetEntity = User.class, cascade = CascadeType.PERSIST)
+    private User user;
 }
