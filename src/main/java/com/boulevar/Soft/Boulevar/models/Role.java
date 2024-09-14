@@ -6,21 +6,22 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.Set;
+
+
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cajero")
-public class Cajero {
-
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(nullable = false)
+    private int idRole;
 
-    @OneToOne
-    @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigoUsuario")
-    private Usuario usuario;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-}
+ }

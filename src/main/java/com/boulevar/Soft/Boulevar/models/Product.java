@@ -12,12 +12,11 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "productos")
-public class Producto {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idProduct;
 
     @Column(nullable = false)
     private String name;
@@ -37,12 +36,10 @@ public class Producto {
     @Column(nullable = true)
     private int quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "idMenu")
+    @ManyToOne(targetEntity = Menu.class)
     private Menu menu;
 
-    @ManyToOne
-    @JoinColumn(name = "idOrden")  // Clave foránea en la tabla de Producto
-    private Orden orden;
+    @ManyToOne(targetEntity = Order.class)
+    private Order order;
 
 }

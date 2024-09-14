@@ -10,7 +10,7 @@
         <a href="/save/0" class="btn">Agregar</a>
     </div>
     <div>
-        <h2 th:if="${list.isEmpty()}">No hay empleados</h2>
+        <h2 th:if="${list.isEmpty()}">No hay employees</h2>
 
         <div th:if="${!list.isEmpty()}">
             <h2>Empleados</h2>
@@ -28,17 +28,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="empleado : ${list}">
-                    <td th:text="${empleado.nombres}"></td>
-                    <td th:text="${empleado.apellidos}"></td>
-                    <td th:text="${empleado.cedulaIdentidad}"></td>
-                    <td th:text="${empleado.celular}"></td>
-                    <td th:text="${empleado.correo}"></td>
-                    <td th:text="${empleado.sueldo}"></td>
-                    <td th:text="${empleado.fechaNacimiento}"></td>
+                <tr th:each="employee : ${list}">
+                    <td th:text="${employee.nombres}"></td>
+                    <td th:text="${employee.apellidos}"></td>
+                    <td th:text="${employee.cedulaIdentidad}"></td>
+                    <td th:text="${employee.celular}"></td>
+                    <td th:text="${employee.correo}"></td>
+                    <td th:text="${employee.sueldo}"></td>
+                    <td th:text="${employee.fechaNacimiento}"></td>
                     <td>
-                        <a th:href="@{/save/{id}(id=${empleado.idEmpleado})}">Editar</a>
-                        <a th:href="@{/delete/{id}(id=${empleado.idEmpleado})}">Eliminar</a>
+                        <a th:href="@{/save/{id}(id=${employee.idEmpleado})}">Editar</a>
+                        <a th:href="@{/delete/{id}(id=${employee.idEmpleado})}">Eliminar</a>
                     </td>
                 </tr>
                 </tbody>

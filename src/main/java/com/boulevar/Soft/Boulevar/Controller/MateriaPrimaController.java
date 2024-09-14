@@ -2,7 +2,6 @@ package com.boulevar.Soft.Boulevar.Controller;
 
 
 import com.boulevar.Soft.Boulevar.Service.API.MateriaPrimaServiceAPI;
-import com.boulevar.Soft.Boulevar.Util.ApiRespuestaData;
 import com.boulevar.Soft.Boulevar.models.MateriaPrima;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/materiaprima")
+@RequestMapping("api/materiaprima")
 @CrossOrigin("*")
 
 public class MateriaPrimaController {
@@ -19,28 +18,24 @@ public class MateriaPrimaController {
     private MateriaPrimaServiceAPI materiaPrimaServiceAPI;
 
     @GetMapping("/")
-    public ApiRespuestaData<List<MateriaPrima>> getAllMateriaPrima() {
-        List<MateriaPrima> materiaPrimas = materiaPrimaServiceAPI.getAll();
-
-        return new ApiRespuestaData<>(materiaPrimas);
-    }
+    public List<MateriaPrima> getAllMateriaPrima(){return materiaPrimaServiceAPI.getAll();}
 
     @GetMapping("/show/{id}")
-    public ApiRespuestaData<MateriaPrima> getMateriaPrimaById(@PathVariable("id")Integer id) {
-        MateriaPrima materiaPrima = (id != null && id != 0) ? materiaPrimaServiceAPI.get(id) : new MateriaPrima();
-            return new ApiRespuestaData<>(materiaPrima);
+    public MateriaPrima getMateriaPrimaById(@PathVariable("id")Integer id) {
+        if (id !=null && id !=0){
+            return materiaPrimaServiceAPI.get(id);
+        } else {
+            return new MateriaPrima();
+        }
     }
 
     @PostMapping("/save")
-    public ApiRespuestaData<MateriaPrima> saveMateriaPrima(@RequestBody MateriaPrima materiaPrima) {
-        MateriaPrima savedMateriaPrima = materiaPrimaServiceAPI.save(materiaPrima);
-        return new ApiRespuestaData<>(savedMateriaPrima);
-    }
+    public MateriaPrima saveMateriaPrima(@RequestBody MateriaPrima materiaPrima){return materiaPrimaServiceAPI.save(materiaPrima);}
 
     @DeleteMapping("/delete/{id}")
-    public ApiRespuestaData<String> delete(@PathVariable Integer id){
+    public String delete(@PathVariable Integer id){
         materiaPrimaServiceAPI.deleted(id);
-        return new ApiRespuestaData<>("Materia Prima eliminada con éxito");
+        return "Materia Prima eliminada con éxito";
     }
 
 }

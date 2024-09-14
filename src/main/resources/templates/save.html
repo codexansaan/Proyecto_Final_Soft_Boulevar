@@ -7,7 +7,7 @@
 <body>
 
     <div class="contenedor">
-        <form action="#" th:action="@{/save}" th:object="${empleado}" method="post">
+        <form action="#" th:action="@{/save}" th:object="${employee}" method="post">
             <div class="formulario">
                 <label for="nombres">Nombres</label>
                 <input type="text" class="inputs" id="nombres" th:field="*{nombres}" name="nombres">
