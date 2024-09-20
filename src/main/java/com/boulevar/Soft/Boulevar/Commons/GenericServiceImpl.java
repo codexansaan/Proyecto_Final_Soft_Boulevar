@@ -1,5 +1,6 @@
 package com.boulevar.Soft.Boulevar.Commons;
 
+import com.boulevar.Soft.Boulevar.models.Employee;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +35,6 @@ public abstract class GenericServiceImpl<T,ID extends Serializable> implements G
     }
 
     public abstract CrudRepository<T, ID> getDao();
+
+
 }

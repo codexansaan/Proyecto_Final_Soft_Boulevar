@@ -1,6 +1,7 @@
 package com.boulevar.Soft.Boulevar.Controller;
 
 
+import com.boulevar.Soft.Boulevar.Projection.InterfaceBased.Closed.ProductClosedView;
 import com.boulevar.Soft.Boulevar.Service.API.ProductServiceAPI;
 import com.boulevar.Soft.Boulevar.Util.ApiResponseData;
 import com.boulevar.Soft.Boulevar.models.Product;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/productos")
+@RequestMapping("/api/products")
 @CrossOrigin("*")
 public class ProductController {
 
@@ -23,6 +24,15 @@ public class ProductController {
 
         return new ApiResponseData<>(products);
     }
+
+    //Closed view de productos
+    @GetMapping("findallproductclosedview")
+    public ApiResponseData<List<ProductClosedView>> findallproductclosedview(){
+        List<ProductClosedView> productClosedViews = productServiceAPI.findBy();
+
+        return new ApiResponseData<>(productClosedViews);
+    }
+
 
     @GetMapping("/show/{id}")
     public ApiResponseData<Product> getProductoById(@PathVariable("id")Integer id) {
@@ -37,6 +47,7 @@ public class ProductController {
         return new ApiResponseData<>(product);
 
     }
+
 
     @DeleteMapping("delete/{id}")
     public ApiResponseData<String> delete(@PathVariable Integer id){
