@@ -13,7 +13,7 @@ import lombok.Setter;
 public class RawMaterial {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int idMateriaPrima;
+    private int idRawMaterial;
 
     @Column(nullable = false)
     private String name;
