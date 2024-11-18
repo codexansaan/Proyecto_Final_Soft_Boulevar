@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/rawmaterial")
+@RequestMapping("/api/rawmaterials")
 @CrossOrigin("*")
 
 public class RawMaterialController {
@@ -18,10 +18,10 @@ public class RawMaterialController {
     private RawMaterialServiceAPI rawMaterialServiceAPI;
 
     @GetMapping("/")
-    public ApiResponseData<List<RawMaterial>> getallRawMaterial() {
-        List<RawMaterial> rawMaterial = rawMaterialServiceAPI.getAll();
+    public ApiResponseData<List<RawMaterial>> getAllRawMaterial() {
+        List<RawMaterial> rawMaterials = rawMaterialServiceAPI.getAll();
 
-        return new ApiResponseData<>(rawMaterial);
+        return new ApiResponseData<>(rawMaterials);
     }
     @GetMapping("/show/{id}")
     public ApiResponseData<RawMaterial> getRawMaterialById(@PathVariable("id")Integer id) {

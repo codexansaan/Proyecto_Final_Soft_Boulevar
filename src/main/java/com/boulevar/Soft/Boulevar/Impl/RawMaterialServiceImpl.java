@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class RawMaterialServiceImpl extends GenericServiceImpl<RawMaterial, Integer> implements RawMaterialServiceAPI {
@@ -17,4 +19,8 @@ public class RawMaterialServiceImpl extends GenericServiceImpl<RawMaterial, Inte
 
     @Override
     public CrudRepository<RawMaterial, Integer> getDao(){return rawMaterialRepository;}
+
+    public List<RawMaterial> findAll() {
+        return rawMaterialRepository.findAll();
+    }
 }

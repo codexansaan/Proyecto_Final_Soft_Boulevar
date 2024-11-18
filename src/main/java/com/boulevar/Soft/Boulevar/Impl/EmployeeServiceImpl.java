@@ -22,7 +22,7 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Employee, Integer> i
     }
 
 
-    public List<Employee> finddAll() {
+    public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
 }
