@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class RawMaterialServiceImpl extends GenericServiceImpl<RawMaterial, Integer> implements RawMaterialServiceAPI {
 
     @Autowired
-    private RawMaterialRepository materiaPrimaDaoAPI;
+    private RawMaterialRepository rawMaterialRepository;
 
     @Override
-    public CrudRepository<RawMaterial, Integer> getDao(){return materiaPrimaDaoAPI;}
+    public CrudRepository<RawMaterial, Integer> getDao(){return rawMaterialRepository;}
 }
