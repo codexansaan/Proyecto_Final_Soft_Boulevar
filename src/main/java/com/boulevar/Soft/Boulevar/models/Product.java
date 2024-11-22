@@ -39,7 +39,7 @@ public class Product {
     @ManyToOne(targetEntity = Menu.class)
     private Menu menu;
 
-    @ManyToOne(targetEntity = Order.class)
-    private Order order;
+    @ManyToOne(targetEntity = Pedido.class)
+    private Pedido pedido;
 
 }

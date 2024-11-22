@@ -9,14 +9,13 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orden")
-public class Order {
+@Table
+public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +36,7 @@ public class Order {
     @Column(nullable = false)
     private String notes;
 
-    @OneToMany(targetEntity = Product.class, fetch = FetchType.EAGER, mappedBy = "order")//Relacion de uno a muchos, clase objetivo Product, Carga lista de productos, relaciona con productos
+    @OneToMany(targetEntity = Product.class, fetch = FetchType.EAGER, mappedBy = "pedido")//Relacion de uno a muchos, clase objetivo Product, Carga lista de productos, relaciona con productos
     private List<Product> products;
 
     @ManyToOne(targetEntity = Waiter.class)//Relacion de muchas ordenes a un mesero

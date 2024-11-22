@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -25,7 +24,7 @@ public class Waiter {
     @JoinColumn(name = "user_code")
     private User user;
 
-    @OneToMany(targetEntity = Order.class, fetch = FetchType.LAZY, mappedBy = "waiter")  // El lado "muchos" tiene una referencia al lado "uno"
-    private List<Order> orders;
+    @OneToMany(targetEntity = Pedido.class, fetch = FetchType.LAZY, mappedBy = "waiter")  // El lado "muchos" tiene una referencia al lado "uno"
+    private List<Pedido> pedidos;
 
 }

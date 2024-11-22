@@ -36,7 +36,7 @@ public class Customer {
     @Column(nullable = false)
     private String address;
 
-    @OneToMany(targetEntity = Order.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "customer")
-    private Set<Order> orders;
+    @OneToMany(targetEntity = Pedido.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "customer")
+    private Set<Pedido> pedidos;
 
 }
