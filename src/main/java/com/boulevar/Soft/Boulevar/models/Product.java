@@ -24,16 +24,16 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    @Column(nullable = true)
+    @Column
     private String description;
 
     @Column(nullable = false)
     private  String image;
 
-    @Column(nullable = true)
+    @Column
     private String category;
 
-    @Column(nullable = true)
+    @Column
     private int quantity;
 
     @ManyToOne(targetEntity = Menu.class)
